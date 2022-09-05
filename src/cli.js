@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 import arg from "arg";
-import inquirer from "inquirer";
 import Build from "../config/Build.js";
 import { ask } from "./ask.js";
 import { removeParam, setNewParams } from "./Parameters.js";
