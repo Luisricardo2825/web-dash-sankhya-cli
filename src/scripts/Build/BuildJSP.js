@@ -1,16 +1,13 @@
-import fs, { readFileSync } from "fs";
+import fs from "fs";
 import archiver from "archiver";
 import { Sanitizehtml } from "./cherrio.js";
 import path from "path";
-import { ParamsFile } from "./Params.js";
-const parameters = ParamsFile(process.cwd())
-const jspHeader = `<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8" isELIgnored ="false"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@ page import="java.util.*" %>
-<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
-<%@ taglib prefix="snk" uri="/WEB-INF/tld/sankhyaUtil.tld" %>`;
+import { rootPath } from "../../utils/index.js";
 
 export function BuildJsp(spinner, currentPath) {
+  const jspHeader = fs
+    .readFileSync(path.join(rootPath, "src", "templates", "Java", "header.jsp"))
+    .toString();
   return new Promise(function (resolve, reject) {
     Sanitizehtml(
       path.join(currentPath, "SankhyaBuild", "index.html"),
@@ -19,7 +16,6 @@ export function BuildJsp(spinner, currentPath) {
       let result = jspHeader + "\n" + data;
 
       result = result.replace("%PUBLIC_URL%", "${BASE_FOLDER}");
-      result = result.replace(`"$SANKHYA_PARAMETERS$"`, `${parameters}`);
 
       // TreatJSFiles();
       // TreatMEDIAFiles();

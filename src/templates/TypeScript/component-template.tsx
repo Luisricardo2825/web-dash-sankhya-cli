@@ -71,9 +71,9 @@ interface Props {
   refreshDetails: (componentID: string, params?: object) => void;
   openPage: (page: string, params?: object) => void;
 }
-type template = () => JSX.Element;
+type template = (props: Props) => JSX.Element;
 
-const template = (props) => {
+const template: template = (props) => {
   const { executeQuery, openApp, refreshDetails, openLevel, openPage } = props;
   return <div>template</div>;
 };

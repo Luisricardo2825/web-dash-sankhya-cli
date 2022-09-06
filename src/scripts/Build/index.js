@@ -1,19 +1,25 @@
 #!/usr/bin/env node
 import { BuildJsp } from "./BuildJSP.js";
 import * as fsExt from "fs-extra";
+import * as fs from "fs";
 import ora from "ora";
 import * as path from "path";
 import chalk from "chalk";
-const dir = "./SankhyaBuild";
 
 const Build = async () => {
   const spinner = ora({
-    spinner: "arc",
+    spinner: "flip",
     prefixText: "Iniciando...\n",
   }).start();
   const currentPath = process.cwd();
+  const buildPath = path.join(currentPath, "build");
+  const destPath = path.join(currentPath, "SankhyaBuild");
+
+  if (DirExists(destPath))
+    fs.rmSync(destPath, { recursive: true, force: true });
+
   // copy source folder to destination
-  await fsExt.copy(path.join(currentPath, "build"), dir, function (err) {
+  await fsExt.copy(buildPath, destPath, function (err) {
     if (err) {
       spinner.fail("Ocorreu um erro durante a build: " + err.message);
       return;
@@ -30,6 +36,11 @@ const Build = async () => {
         spinner.fail("A error occurred during building:" + err.message);
       });
   });
+};
+
+const DirExists = (path) => {
+  if (!fs.existsSync(path)) return false;
+  return true;
 };
 
 export default Build;

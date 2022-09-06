@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import arg from "arg";
-import Build from "../config/Build.js";
-import { ask } from "./ask.js";
-import { removeParam, setNewParams } from "./Parameters.js";
+import Build from "./scripts/Build/index.js";
+import { ask } from "./utils/ask.js";
+import { removeParam, setNewParams } from "./scripts/parameters/Parameters.js";
 function parseArgumentsIntoOptions(rawArgs) {
   const args = arg(
     {

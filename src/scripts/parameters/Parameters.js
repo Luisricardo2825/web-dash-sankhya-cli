@@ -1,6 +1,6 @@
-import { readFile, writeFile } from "fs/promises";
+import { writeFile } from "fs/promises";
 import path from "path";
-import { ParamsFile } from "../config/Params.js";
+import { ParamsFile } from "../../utils/Params.js";
 const parameters = ParamsFile(process.cwd());
 export function setNewParams(param) {
   return new Promise(async function (resolve, reject) {
@@ -15,7 +15,7 @@ export function setNewParams(param) {
       );
       resolve(`${param}`);
     } catch (error) {
-      reject(rror);
+      reject(error);
     }
   });
 }
@@ -32,7 +32,7 @@ export function removeParam(param) {
       );
       resolve(`${param}`);
     } catch (error) {
-      reject(rror);
+      reject(error);
     }
   });
 }

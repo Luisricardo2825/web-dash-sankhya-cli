@@ -50,7 +50,6 @@ export const ask = async (options) => {
     Object.entries(answers).forEach(([key, value]) => {
       value && hideBinArgv.push(`--${key}`, value);
     });
-    
   }
 
   const argv = yargs(hideBinArgv)
