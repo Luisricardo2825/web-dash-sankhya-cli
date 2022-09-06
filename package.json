@@ -1,10 +1,13 @@
 {
   "name": "react-sankhya-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI para ajudar no desenvolvimento de telas com react",
   "main": "./main.js",
   "type": "module",
-  "bin": "./main.js",
+  "bin": {
+    "react-sankhya-cli": "./main.js",
+    "rsc": "./main.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

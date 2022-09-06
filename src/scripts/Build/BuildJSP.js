@@ -1,12 +1,16 @@
 import fs from "fs";
 import archiver from "archiver";
 import { Sanitizehtml } from "./cherrio.js";
-import path from "path";
-import { rootPath } from "../../utils/index.js";
+import * as path from "path";
+import { fileURLToPath } from "url";
 
+export const __filename = fileURLToPath(import.meta.url);
+export const __dirname = path.resolve(path.dirname(""));
 export function BuildJsp(spinner, currentPath) {
   const jspHeader = fs
-    .readFileSync(path.join(rootPath, "src", "templates", "Java", "header.jsp"))
+    .readFileSync(
+      path.join(__filename, "..", "..", "..", "templates", "Java", "header.jsp")
+    )
     .toString();
   return new Promise(function (resolve, reject) {
     Sanitizehtml(
