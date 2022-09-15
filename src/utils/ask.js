@@ -53,7 +53,7 @@ export const ask = async (options) => {
   }
 
   const argv = yargs(hideBinArgv)
-    .usage("Usage: npx $0")
+    .usage("Usage: npx $0").command("new:component")
     .options(getOptions(options))
     .parseSync();
 

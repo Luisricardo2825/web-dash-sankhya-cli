@@ -3,6 +3,10 @@ import arg from "arg";
 import Build from "./scripts/Build/index.js";
 import { ask } from "./utils/ask.js";
 import { removeParam, setNewParams } from "./scripts/parameters/Parameters.js";
+import CreateNewPage from "./scripts/Components/index.js";
+
+const currentPath = process.cwd();
+
 function parseArgumentsIntoOptions(rawArgs) {
   const args = arg(
     {
@@ -12,8 +16,10 @@ function parseArgumentsIntoOptions(rawArgs) {
       "--name": String,
       "--delete": Boolean,
       "--create": Boolean,
+      "--component": String,
       "-n": "--name",
-      "-ts": "--typescript",
+      "-": "--component",
+      "-t": "--typescript",
       "-p": "--param",
       "-b": "--build",
       "-c": "--create",
@@ -24,13 +30,13 @@ function parseArgumentsIntoOptions(rawArgs) {
     }
   );
   return {
-    skip: args["--yes"] || false,
     typescript: args["--typescript"] || false,
     param: args["--param"] || false,
     build: args["--build"] || false,
     name: args["--name"] || undefined,
     create: args["--create"] || false,
     delete: args["--delete"] || false,
+    component: args["--component"] || undefined,
   };
 }
 
@@ -38,6 +44,7 @@ export async function cli(args) {
   let options = parseArgumentsIntoOptions(args);
   let action = "";
   if (options.param) {
+    console.log("Entrou aqui PARAM");
     if (options.create) {
       action = "create";
     }
@@ -47,7 +54,18 @@ export async function cli(args) {
     await ParamDash(action, options.name);
   }
   if (options.build) {
-    await Build();
+    await Build(currentPath);
+  }
+  if (options.component) {
+    // const status = CreateNewPage(
+    //   options.component,
+    //   currentPath,
+    //   options.typescript
+    // );
+    // if (status) {
+    //   console.log("Componente criado com sucesso!");
+    // }
+    ComponentDash();
   }
 }
 
@@ -83,22 +101,20 @@ const ParamDash = async (action, name) => {
   const argv = await ask(options);
 
   action = argv.acao ? argv.acao : action;
-  if (action == "create") {
-    await setNewParams(argv.name || name)
-      .then(function (newParams) {
-        console.log("Parametro criado:", newParams);
-      })
-      .catch(function (error) {
-        console.log("Error:", error);
-      });
-  }
-  if (action == "delete") {
-    await removeParam(argv.name || name)
-      .then(function (param) {
-        console.log("Parametro deletado:", param);
-      })
-      .catch(function (error) {
-        console.log("Error:", error);
-      });
-  }
+
+};
+const ComponentDash = async (name) => {
+  let options = {
+    name: {
+      // inquirer
+      message: "Digite o nome do componente",
+      // yargs
+      demandOption: false,
+      describe: "Nome do componente",
+      // shared
+      type: "string",
+    },
+  };
+
+  const argv = await ask(options);
 };

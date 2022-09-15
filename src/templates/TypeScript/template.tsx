@@ -75,7 +75,7 @@ type template = (props: Props) => JSX.Element;
 
 const template: template = (props) => {
   const { executeQuery, openApp, refreshDetails, openLevel, openPage } = props;
-  return <div>template</div>;
+  return <div>Pagina: template</div>;
 };
 
 export default template;

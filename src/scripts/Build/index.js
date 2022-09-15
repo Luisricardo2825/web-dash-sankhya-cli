@@ -6,12 +6,12 @@ import ora from "ora";
 import * as path from "path";
 import chalk from "chalk";
 
-const Build = async () => {
+const Build = async (currentPath) => {
   const spinner = ora({
     spinner: "flip",
     prefixText: "Iniciando...\n",
   }).start();
-  const currentPath = process.cwd();
+
   const buildPath = path.join(currentPath, "build");
   const destPath = path.join(currentPath, "SankhyaBuild");
   const zipPath = path.join(currentPath, "SankhyaBuild.zip");

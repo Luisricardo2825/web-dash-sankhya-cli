@@ -2,7 +2,7 @@ import React from "react";
 
 export default function template(props) {
   const { executeQuery, openApp, refreshDetails, openLevel, openPage } = props;
-  return <div>template</div>;
+  return <div>Pagina:template</div>;
 }
 
 //  regesx tags: (<.[^(><.)]+>)
