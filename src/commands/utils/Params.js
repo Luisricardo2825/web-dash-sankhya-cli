@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import path from "path";
-const CheckParamsFile = (path) => {
+export const CheckParamsFile = (path) => {
   if (!fs.existsSync(path)) return false;
   return true;
 };

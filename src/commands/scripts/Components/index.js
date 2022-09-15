@@ -20,17 +20,7 @@ function CreateNewPage(PageName, currentPath, typescript) {
 function CreateNewTSXPage(PageName, currentPath) {
   console.log("Criando novo componente .TSX...");
   let tsxTemplate = fs
-    .readFileSync(
-      path.join(
-        __filename,
-        "..",
-        "..",
-        "..",
-        "templates",
-        "TypeScript",
-        "template.tsx"
-      )
-    )
+    .readFileSync(path.join("src", "templates", "TypeScript", "template.tsx"))
     .toString();
   PageName = CaptalizeString(PageName);
   tsxTemplate = tsxTemplate.replace(/(template)/gm, PageName);
@@ -40,17 +30,7 @@ function CreateNewTSXPage(PageName, currentPath) {
 function CreateNewJSXPage(PageName, currentPath) {
   console.log("Criando novo componente .JSX...");
   let jsxTemplate = fs
-    .readFileSync(
-      path.join(
-        __filename,
-        "..",
-        "..",
-        "..",
-        "templates",
-        "JavaScript",
-        "template.jsx"
-      )
-    )
+    .readFileSync(path.join("src", "templates", "JavaScript", "template.jsx"))
     .toString();
   PageName = CaptalizeString(PageName);
   jsxTemplate = jsxTemplate.replace(/(template)/gm, PageName);

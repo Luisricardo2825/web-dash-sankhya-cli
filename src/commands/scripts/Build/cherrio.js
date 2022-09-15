@@ -1,10 +1,9 @@
 import * as fs from "fs";
 import * as cheerio from "cheerio";
-import { ParamsFile } from "../../utils/Params.js";
+import { ParamsFile } from "../../utils";
 
-const parameters = JSON.stringify(ParamsFile(process.cwd()));
-
-export async function Sanitizehtml(file, spinner) {
+export async function Sanitizehtml(file, spinner, currentPath) {
+  const parameters = JSON.stringify(ParamsFile(currentPath, "cherrriooo"));
   var $ = cheerio.load(fs.readFileSync(file), {
     xmlMode: true,
     decodeEntities: false,

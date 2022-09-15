@@ -8,14 +8,13 @@ export const __filename = fileURLToPath(import.meta.url);
 export const __dirname = path.resolve(path.dirname(""));
 export function BuildJsp(spinner, currentPath) {
   const jspHeader = fs
-    .readFileSync(
-      path.join(__filename, "..", "..", "..", "templates", "Java", "header.jsp")
-    )
+    .readFileSync(path.join(__filename, "..", "Java", "header.jsp"))
     .toString();
   return new Promise(function (resolve, reject) {
     Sanitizehtml(
       path.join(currentPath, "SankhyaBuild", "index.html"),
-      spinner
+      spinner,
+      currentPath
     ).then((data) => {
       let result = jspHeader + "\n" + data;
 
@@ -24,12 +23,16 @@ export function BuildJsp(spinner, currentPath) {
       // TreatJSFiles();
       // TreatMEDIAFiles();
       fs.writeFile(
-        "./SankhyaBuild/index.jsp",
+        path.join(currentPath, "SankhyaBuild", "index.jsp"),
         result,
         "utf8",
         async function (err) {
           if (err) return console.log(err);
-          zipDirectory("./SankhyaBuild", "./SankhyaBuild.zip", spinner)
+          zipDirectory(
+            path.join(currentPath, "SankhyaBuild"),
+            path.join(currentPath, "./SankhyaBuild.zip"),
+            spinner
+          )
             .then(() => {
               resolve(true);
             })

@@ -2,13 +2,14 @@
   "name": "react-sankhya-cli",
   "version": "1.0.3",
   "description": "CLI para ajudar no desenvolvimento de telas com react",
-  "main": "./main.js",
   "type": "module",
+  "main": "./main.js",
   "bin": {
     "react-sankhya-cli": "./main.js",
     "rsc": "./main.js"
   },
   "scripts": {
+    "start": "node --experimental-specifier-resolution=node yargs.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {

@@ -53,9 +53,44 @@ export const ask = async (options) => {
   }
 
   const argv = yargs(hideBinArgv)
-    .usage("Usage: npx $0").command("new:component")
+    .usage("Usage: npx $0")
+    .command("new:component")
     .options(getOptions(options))
     .parseSync();
 
   return argv;
+};
+
+export const AskForMissing = async function (params, argv) {
+  const options = {};
+
+  params.forEach((key) => {
+    if (argv[key.name] === undefined) {
+      Object.assign(
+        options,
+        CreateOption({
+          name: key.name,
+          value: key.value,
+          message: key.message,
+          type: key.type,
+          ...key,
+        })
+      );
+    }
+  });
+
+  argv = { ...argv, ...(await ask(options)) };
+  return argv;
+};
+
+export const CreateOption = function ({ name, message, type, ...rest }) {
+  return {
+    [name]: {
+      // inquirer
+      message: message,
+      // shared
+      type: type || "string",
+      ...rest,
+    },
+  };
 };

@@ -1,8 +1,9 @@
 import { writeFile } from "fs/promises";
 import path from "path";
 import { ParamsFile } from "../../utils/Params.js";
-const parameters = ParamsFile(process.cwd());
-export function setNewParams(param) {
+
+export function setNewParams(param, currentPath) {
+  const parameters = ParamsFile(process.cwd());
   return new Promise(async function (resolve, reject) {
     const parametrosSankhya = parameters;
 
@@ -19,7 +20,8 @@ export function setNewParams(param) {
     }
   });
 }
-export function removeParam(param) {
+export function removeParam(param, currentPath) {
+  const parameters = ParamsFile(process.cwd());
   return new Promise(async function (resolve, reject) {
     const parametrosSankhya = parameters;
 
