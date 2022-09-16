@@ -1,5 +1,5 @@
 import { AskForMissing } from "../utils/index.js";
-import { setNewParams, removeParam } from "../scripts/parameters";
+import { setNewParams, removeParam } from "../scripts/parameters/index.js";
 
 export const ParamHandler = async (argv, params) => {
   argv = await AskForMissing(params || paramsAskOptions, argv);

@@ -1,9 +1,13 @@
 import { ParamHandler, paramsAskOptions } from "./functions/param.js";
 import { buildAskParams } from "./functions/build.js";
 import { componentAskParams } from "./functions/component.js";
-import Build from "./scripts/Build";
-import CreateNewPage from "./scripts/Components";
-import { AskForMissing, CommandString, TreatDefaultValues } from "./utils";
+import Build from "./scripts/Build/index.js";
+import CreateNewPage from "./scripts/Components/index.js";
+import {
+  AskForMissing,
+  CommandString,
+  TreatDefaultValues,
+} from "./utils/index.js";
 
 export const buildCommand = (yargs) => {
   const baseCommand = "build";

@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as cheerio from "cheerio";
-import { ParamsFile } from "../../utils";
+import { ParamsFile } from "../../utils/index.js";
 
 export async function Sanitizehtml(file, spinner, currentPath) {
   const parameters = JSON.stringify(ParamsFile(currentPath, "cherrriooo"));
