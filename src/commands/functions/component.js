@@ -1,11 +1,14 @@
 export const componentAskParams = [
   {
-    name: "componentName",
-    message: "Digite o nome do componente:",
+    name: "name",
+    message: "Digte o nome do component:",
+    default: undefined,
   },
   {
-    name: "typescript",
-    message: "Usa typescript?",
-    type: "confirm",
+    name: "lang",
+    message: "Escolha a linguagem que preferir:",
+    default: undefined,
+    type: "list",
+    choices: ["TypeScript", "JavaScript",],
   },
-];
+];;

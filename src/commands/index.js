@@ -36,21 +36,25 @@ export const paramCommand = (yargs) => {
 export const componentCommand = (yargs) => {
   const baseCommand = "component";
   const command = CommandString(baseCommand, componentAskParams);
-  console.log(command + " [ts]");
   return yargs.command({
     command: command,
     aliases: [baseCommand],
     desc: "Create new component",
     builder: (yargs) => TreatDefaultValues(yargs, componentAskParams),
     handler: async (argv) => {
-      console.log(argv);
-      if (argv.typescript && argv.componentName) {
-        argv = await AskForMissing(componentAskParams, argv);
-      } else {
-        argv.typescript = true;
+      const args = await argv;
+      if (argv.ts) {
+        argv.lang = "TypeScript";
       }
-      argv.typescript = false;
-      CreateNewPage(argv.componentName, "./src/pages", argv.typescript);
+      if (!argv.name) {
+        let askQ = componentAskParams.filter((arg) =>
+          !args[arg.name] ? arg : null
+        );
+
+        argv = await AskForMissing(askQ, argv);
+      }
+      const useTs = argv.lang === "TypeScript" ? true : false;
+      CreateNewPage(argv.name, "./src/pages", useTs);
     },
   });
 };

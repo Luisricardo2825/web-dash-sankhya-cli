@@ -38,19 +38,14 @@ export const ask = async (options) => {
   let inquirerOptions = getPrompts(options);
   let selectedOptions = [];
 
-  selectedOptions = hideBinArgv
-    .filter((option) => option.includes("--") && option)
-    .map((option) => option.replace("--", ""));
-  if (selectedOptions.length < inquirerOptions.length) {
-    inquirerOptions = inquirerOptions.filter(
-      (option) => !selectedOptions.includes(option.name) && option
-    );
+  inquirerOptions = inquirerOptions.filter(
+    (option) => !selectedOptions.includes(option.name) && option
+  );
 
-    const answers = await inquirer.prompt(inquirerOptions);
-    Object.entries(answers).forEach(([key, value]) => {
-      value && hideBinArgv.push(`--${key}`, value);
-    });
-  }
+  const answers = await inquirer.prompt(inquirerOptions);
+  Object.entries(answers).forEach(([key, value]) => {
+    value && hideBinArgv.push(`--${key}`, value);
+  });
 
   const argv = yargs(hideBinArgv)
     .usage("Usage: npx $0")
