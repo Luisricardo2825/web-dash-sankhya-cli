@@ -5,4 +5,4 @@ node_modules
 params.json
 ./*.jsx
 ./*.tsx
-./src/pages
+src/pages
