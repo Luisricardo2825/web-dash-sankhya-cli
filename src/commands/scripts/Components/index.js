@@ -1,3 +1,4 @@
+import * as fsEx from "fs-extra";
 import * as fs from "fs";
 import * as path from "path";
 
@@ -7,6 +8,8 @@ export const __filename = fileURLToPath(import.meta.url);
 export const __dirname = path.resolve(path.dirname(""));
 const templateBasePath = path.join(__filename, "..", "templates");
 function CreateNewPage(PageName, currentPath, typescript) {
+  fsEx.ensureDirSync(currentPath);
+
   PageName = PageName.replace(/([^\w\s])/gi, "").replace(/\d+/g, "");
   const ext = path.extname(PageName); // File extension
   if (ext) {

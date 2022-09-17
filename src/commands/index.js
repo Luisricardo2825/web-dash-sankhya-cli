@@ -14,7 +14,7 @@ export const buildCommand = (yargs) => {
   const command = CommandString(baseCommand, buildAskParams);
   return yargs.command({
     command: command,
-    aliases: [baseCommand],
+    aliases: [baseCommand, baseCommand[0]],
     desc: "Build a app",
     builder: (yargs) => TreatDefaultValues(yargs, buildAskParams),
     handler: (argv) => {
@@ -27,7 +27,7 @@ export const paramCommand = (yargs) => {
   const command = CommandString(baseCommand, paramsAskOptions);
   return yargs.command({
     command: command,
-    aliases: [baseCommand, baseCommand.substring(0, 4)],
+    aliases: [baseCommand, baseCommand[0]],
     desc: "Create or delete parameters",
     builder: (yargs) => TreatDefaultValues(yargs, paramsAskOptions),
     handler: ParamHandler,
@@ -38,9 +38,12 @@ export const componentCommand = (yargs) => {
   const command = CommandString(baseCommand, componentAskParams);
   return yargs.command({
     command: command,
-    aliases: [baseCommand],
+    aliases: [baseCommand, baseCommand[0]],
     desc: "Create new component",
-    builder: (yargs) => TreatDefaultValues(yargs, componentAskParams),
+    builder: (yargs) =>
+      Object.assign(TreatDefaultValues(yargs, componentAskParams), {
+        desc: "Teste",
+      }),
     handler: async (argv) => {
       const args = await argv;
       if (argv.ts) {

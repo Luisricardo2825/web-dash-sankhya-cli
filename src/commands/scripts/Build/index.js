@@ -16,9 +16,9 @@ const Build = async (currentPath) => {
   const destPath = path.join(currentPath, "SankhyaBuild");
   const zipPath = path.join(currentPath, "SankhyaBuild.zip");
 
-  if (DirExists(destPath))
+  if (fs.existsSync(destPath))
     fs.rmSync(destPath, { recursive: true, force: true });
-  if (DirExists(zipPath)) fs.rmSync(zipPath, { recursive: true, force: true });
+  if (fs.existsSync(zipPath)) fs.rmSync(zipPath, { recursive: true, force: true });
 
   // copy source folder to destination
   await fsExt.copy(buildPath, destPath, function (err) {

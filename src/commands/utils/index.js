@@ -1,5 +1,6 @@
 import { AskForMissing, CreateOption, ask } from "./ask.js";
-import { ParamsFile, CheckParamsFile } from "./Params.js";
+import { ParamsFile } from "./Params.js";
+import { checkIfFileExists } from "./file.js";
 import { CommandString, TreatDefaultValues } from "./Command.js";
 
 export {
@@ -7,7 +8,7 @@ export {
   ask,
   CreateOption,
   ParamsFile,
-  CheckParamsFile,
+  checkIfFileExists,
   CommandString,
   TreatDefaultValues,
 };
