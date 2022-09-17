@@ -1,6 +1,6 @@
 {
   "name": "react-sankhya-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "CLI para ajudar no desenvolvimento de telas com react",
   "type": "module",
   "main": "./main.js",
@@ -22,14 +22,13 @@
   "license": "MIT",
   "dependencies": {
     "archiver": "^5.3.1",
-    "arg": "^5.0.2",
     "chalk": "^5.0.1",
-    "chalk-animation": "^2.0.2",
     "cheerio": "^1.0.0-rc.12",
-    "figlet": "^1.5.2",
     "fs-extra": "^10.1.0",
     "inquirer": "^9.1.1",
     "ora": "^6.1.2",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
     "yargs": "^17.5.1"
   }
 }
