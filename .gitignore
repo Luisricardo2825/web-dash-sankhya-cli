@@ -6,3 +6,4 @@ params.json
 ./*.jsx
 ./*.tsx
 src/pages
+src/Router

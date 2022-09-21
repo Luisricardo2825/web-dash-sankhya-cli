@@ -26,7 +26,7 @@ export async function Sanitizehtml(file, spinner, currentPath) {
   spinner.color = "green";
   spinner.text = `Injetando parametros do sankhya...`;
   $("#sankhyaVariable").each(async function (i, elm) {
-    $(this).text(`var param = ${parameters};
+    $(this).text(`var Params = ${parameters};
     localStorage.setItem("base_folder", "\${BASE_FOLDER}");`);
   });
 

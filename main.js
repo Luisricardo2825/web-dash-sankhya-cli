@@ -5,10 +5,12 @@ import {
   buildCommand,
   paramCommand,
   componentCommand,
+  routeCommand,
 } from "./src/commands/index.js";
 
 let yarg = yargs(hideBin(process.argv)).usage("Usage: rsc");
 yarg = paramCommand(yarg);
 yarg = buildCommand(yarg);
 yarg = componentCommand(yarg);
+yarg = routeCommand(yarg);
 yarg.help("h").alias("h", "help").scriptName("").argv;

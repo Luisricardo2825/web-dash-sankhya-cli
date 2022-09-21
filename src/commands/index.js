@@ -8,6 +8,7 @@ import {
   CommandString,
   TreatDefaultValues,
 } from "./utils/index.js";
+import { routeAskOptions, RouteHandler } from "./functions/route.js";
 
 export const buildCommand = (yargs) => {
   const baseCommand = "build";
@@ -59,5 +60,17 @@ export const componentCommand = (yargs) => {
       const useTs = argv.lang === "TypeScript" ? true : false;
       CreateNewPage(argv.name, "./src/pages", useTs);
     },
+  });
+};
+
+export const routeCommand =(yargs) => {
+  const baseCommand = "route";
+  const command = CommandString(baseCommand, routeAskOptions);
+  return yargs.command({
+    command: command,
+    aliases: [baseCommand, baseCommand[0]],
+    desc: "Create route",
+    builder: (yargs) => TreatDefaultValues(yargs, routeAskOptions),
+    handler: RouteHandler,
   });
 };

@@ -3,6 +3,7 @@ import * as fs from "fs";
 import * as path from "path";
 import prettier from "prettier";
 import { fileURLToPath } from "url";
+import { CaptalizeString } from "../../utils/index.js";
 
 export const __filename = fileURLToPath(import.meta.url);
 export const __dirname = path.resolve(path.dirname(""));
@@ -77,7 +78,7 @@ function decomment(jsCodeStr) {
     trailingComma: "none",
     Semicolons: false,
     jsxSingleQuote: false,
-    parser:"css"
+    parser: "css",
   };
 
   // actually strip comments:
@@ -88,12 +89,6 @@ function decomment(jsCodeStr) {
   };
 
   return prettier.format(jsCodeStr, options);
-}
-export function CaptalizeString(string) {
-  return (
-    `${string[0]}`.toUpperCase() +
-    string.substring(1, string.length).toLowerCase()
-  );
 }
 
 export default CreateNewPage;
