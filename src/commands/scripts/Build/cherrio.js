@@ -16,7 +16,7 @@ export async function Sanitizehtml(file, spinner, currentPath) {
   $("head link").each(async function (i, elm) {
     const attr = $(this).attr("href");
 
-    if (pattern.test(attr[0]))
+    if (!pattern.test(attr[0]))
       $(this).attr("href", "${BASE_FOLDER}" + $(this).attr("href"));
   });
 
@@ -24,7 +24,7 @@ export async function Sanitizehtml(file, spinner, currentPath) {
   spinner.text = `Alterando caminho dos scripts...`;
   $("head script").each(async function (i, elm) {
     const attr = $(this).attr("src");
-    if ($(this).attr("src") && pattern.test(attr[0])) {
+    if ($(this).attr("src") && !pattern.test(attr[0])) {
       $(this).attr("src", "${BASE_FOLDER}" + $(this).attr("src"));
     }
   });
