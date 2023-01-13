@@ -1,12 +1,12 @@
 {
-  "name": "react-sankhya-cli",
-  "version": "1.0.8",
-  "description": "CLI para ajudar no desenvolvimento de telas com react",
+  "name": "web-dash-sankhya-cli",
+  "version": "1.0.9",
+  "description": "CLI para ajudar no desenvolvimento de telas com frameworks web",
   "type": "module",
   "main": "./main.js",
   "bin": {
-    "react-sankhya-cli": "./main.js",
-    "rsc": "./main.js"
+    "web-dash-sankhya-cli": "./main.js",
+    "wdsc": "./main.js"
   },
   "scripts": {
     "start": "node yargs.js",

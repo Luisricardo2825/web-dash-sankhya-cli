@@ -18,8 +18,6 @@ export function BuildJsp(spinner, currentPath) {
     ).then((data) => {
       let result = jspHeader + "\n" + data;
 
-      result = result.replace("%PUBLIC_URL%", "${BASE_FOLDER}");
-
       // TreatJSFiles();
       // TreatMEDIAFiles();
       fs.writeFile(

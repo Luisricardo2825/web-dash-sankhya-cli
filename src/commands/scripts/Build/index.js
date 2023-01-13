@@ -40,9 +40,4 @@ const Build = async (currentPath) => {
   });
 };
 
-const DirExists = (path) => {
-  if (!fs.existsSync(path)) return false;
-  return true;
-};
-
 export default Build;
