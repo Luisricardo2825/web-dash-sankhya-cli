@@ -3,6 +3,7 @@ import archiver from "archiver";
 import { Sanitizehtml } from "./cherrio.js";
 import * as path from "path";
 import { fileURLToPath } from "url";
+import { checkIfFileExists } from "../../utils/file.js";
 
 export const __filename = fileURLToPath(import.meta.url);
 export const __dirname = path.resolve(path.dirname(""));
@@ -10,13 +11,18 @@ export function BuildJsp(spinner, currentPath) {
   const jspHeader = fs
     .readFileSync(path.join(__filename, "..", "Java", "header.jsp"))
     .toString();
+  const importsPath = path.join(process.cwd(), "custom.jsp");
+  const jspCustomImports = checkIfFileExists(importsPath)
+    ? fs.readFileSync(importsPath).toString()
+    : "";
+
   return new Promise(function (resolve, reject) {
     Sanitizehtml(
       path.join(currentPath, "SankhyaBuild", "index.html"),
       spinner,
       currentPath
     ).then((data) => {
-      let result = jspHeader + "\n" + data;
+      let result = jspHeader + "\n" + jspCustomImports + "\n" + data;
 
       // TreatJSFiles();
       // TreatMEDIAFiles();

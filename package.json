@@ -1,6 +1,6 @@
 {
   "name": "web-dash-sankhya-cli",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "CLI para ajudar no desenvolvimento de telas com frameworks web",
   "type": "module",
   "main": "./main.js",
